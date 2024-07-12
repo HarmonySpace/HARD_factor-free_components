@@ -30,9 +30,9 @@ const menu = [
 ];
 
 export default function Nav() {
-	const [isRotated, setIsRotated] = useState(false);
-	const toggleRotate = () => {
-		setIsRotated(!isRotated);
+	const [isHiddenMenu, setHiddeMenu] = useState(true);
+	const toggleHiddeMenu = () => {
+		setHiddeMenu(!isHiddenMenu);
 	};
 	return (
 		<>
@@ -45,29 +45,29 @@ export default function Nav() {
 						</h1>
 					</div>
 					<HiMenu
-						onClick={toggleRotate}
+						onClick={toggleHiddeMenu}
 						className={
-							"w-6 lg:w-12 h-6 lg:h-12 text-main-500 transition-all duration-150 " +
-							(isRotated ? "-rotate-90" : "")
+							"lg:hidden w-8 h-8 text-main-500 transition-all duration-300 ease-out " +
+							(isHiddenMenu ? "" : "-rotate-90" )
 						}
 					/>
-					<ul className="hidden flex justify-center items-center gap-16">
+					<ul className="hidden lg:flex justify-center items-center lg:gap-12 xl:gap-16 transition-all duration-150 ease-out">
 						{menu.map((item) => (
-							<li className="font-nun text-2xl" key={item.name}>
+							<li className="font-nun lg:text-lg 2xl:text-2xl" key={item.name}>
 								<a href={item.path}>{item.name}</a>
 							</li>
 						))}
 					</ul>
-					<div className="hidden flex justify-center items-center gap-6">
-						<span className="px-6 py-3 text-2xl bg-gray-800 rounded-full">
+					<div className="hidden lg:flex justify-center items-center gap-6">
+						<span className="hidden xl:inline px-6 py-3 lg:text-sm xl:text-lg 2xl:text-2xl text-center bg-gray-800 rounded-full">
 							Únete a la comunidad
 						</span>
-						<div className=" w-16 h-16 flex justify-center items-center bg-main-500 rounded-full">
+						<div className="lg:w-8 xl:w-12 2xl:w-16 lg:h-8 xl:h-12 2xl:h-16 flex justify-center items-center bg-main-500 rounded-full">
 							<HiOutlineArrowSmRight className="w-12 h-12 text-gray-900 stroke-[0.2rem] -rotate-45" />
 						</div>
 					</div>
 				</div>
-				<div className="mt-4 w-full flex flex-wrap flex-col justify-between items-start bg-gray-900 rounded-[1rem]">
+				<div className={"mt-4 w-full flex flex-wrap flex-col justify-between items-start bg-gray-900 rounded-[1rem] " + (isHiddenMenu ? "hidden" : "")}>
 					<ul className="px-8 py-6 w-full flex flex-wrap flex-col justify-start items-start gap-6">
 						{menu.map((item) => (
 							<li className="font-nun text-2xl " key={item.name}>
